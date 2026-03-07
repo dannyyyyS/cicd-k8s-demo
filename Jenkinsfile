@@ -4,7 +4,7 @@ pipeline {
     environment {
         REGISTRY = 'docker.io'
         IMAGE_REPO = 'smsoooo/cicd-k8s-demo'
-        IMAGE_TAG = "${env.BUILD_NUMBER}"
+        IMAGE_TAG = "1.0-${env.GIT_COMMIT.take(7)}"
         FULL_IMAGE = "${REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG}"
         LATEST_IMAGE = "${REGISTRY}/${IMAGE_REPO}:latest"
     }
