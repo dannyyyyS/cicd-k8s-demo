@@ -51,7 +51,6 @@ pipeline {
                     docker build \
                       --build-arg JAR_FILE=target/app.jar \
                       -t ${FULL_IMAGE} \
-                      -t ${LATEST_IMAGE} \
                       .
                 '''
             }
