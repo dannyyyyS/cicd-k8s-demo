@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        maven 'Maven3'
+    }
     environment {
         REGISTRY = 'docker.io'
         IMAGE_REPO = 'smsoooo/cicd-k8s-demo'
@@ -22,7 +24,7 @@ pipeline {
             }
         }
 
-        stage('rename target/app.jar') {
+        stage('Rename target/app.jar') {
             steps {
                 sh '''
                     set -e
@@ -81,9 +83,6 @@ pipeline {
         }
         failure {
             echo "Build or push failed."
-        }
-        always {
-            cleanWs()
         }
     }
 }
