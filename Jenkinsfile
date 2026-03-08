@@ -58,7 +58,6 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                // use docker credentials
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub-creds',
                     usernameVariable: 'DOCKER_USERNAME',
@@ -70,6 +69,19 @@ pipeline {
                         docker push ${FULL_IMAGE}
                         docker logout ${REGISTRY}
                     '''
+                }
+            }
+
+            stage('Trigger Deployment Pipeline') {
+                steps {
+                    build job: 'demo/delivery',
+                        parameters: [
+                            string(name: 'APP_NAME', value: 'cicd-demo'),
+                            string(name: 'IMAGE_TAG', value: env.IMAGE_TAG),
+                            string(name: 'TARGET_ENV', value: 'dev')
+                        ],
+                        wait: true,
+                        propagate: true
                 }
             }
         }
