@@ -77,7 +77,7 @@ pipeline {
             steps {
                 build job: '/cicd-k8s-demo-pipelines/delivery-pipeline',
                     parameters: [
-                        string(name: 'APP_NAME', value: 'cicd-demo'),
+                        string(name: 'APP_NAME', value: 'cicd-k8s-demo'),
                         string(name: 'IMAGE_TAG', value: env.IMAGE_TAG),
                         string(name: 'TARGET_ENV', value: 'dev')
                     ],
