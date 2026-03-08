@@ -68,7 +68,6 @@ pipeline {
                         set +x
                         echo "$DOCKER_PASSWORD" | docker login ${REGISTRY} -u "$DOCKER_USERNAME" --password-stdin
                         docker push ${FULL_IMAGE}
-                        docker push ${LATEST_IMAGE}
                         docker logout ${REGISTRY}
                     '''
                 }
