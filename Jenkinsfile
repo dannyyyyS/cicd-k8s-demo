@@ -75,7 +75,7 @@ pipeline {
 
         stage('Trigger Deployment Pipeline') {
             steps {
-                build job: 'demo/delivery',
+                build job: '/demo/delivery',
                     parameters: [
                         string(name: 'APP_NAME', value: 'cicd-demo'),
                         string(name: 'IMAGE_TAG', value: env.IMAGE_TAG),
